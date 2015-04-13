@@ -16,13 +16,13 @@ PrintDotRecursive( int n )
     if( n <= 0 )
     {
         printf( "." );
-	    printf( "\n" );
+	printf( "\n" );
     }
     else
     {
         printf( " " );
         n -= 1;
-	    PrintDotRecursive( n );
+	PrintDotRecursive( n );
     }
 }
 
