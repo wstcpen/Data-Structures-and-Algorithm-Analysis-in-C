@@ -1,0 +1,52 @@
+#ifdef Knuth_Morris_Pratt
+
+void
+KMPShift( int v[ ], int m, const char P[ ] )
+{
+    int k,q;
+
+    v[ 0 ] = 0;
+    k = 0;
+    printf( "%d", v[ 0 ] );
+    for( q = 1; q < m; q++ )
+    {
+        while( k > 0 && P[ k ] != P[ q ] )
+            k = v[ k-1 ];
+        if( P[ k ] == P[ q ] )
+            k = k + 1;
+        v[ q ] = k;
+        printf( "%d", v[ q ] );
+    }
+}
+
+/*移动位数＝已经匹配的字符个数－已经匹配的字符串所对应的匹配值*/
+void
+KnuthMorrisPratt( const char T[ ], const char P[ ] )
+{
+    int n,m,q,i,j,Recordi;
+    int V[ strlen( P ) ];
+
+    n = strlen( T );
+    m = strlen( P );
+    KMPShift( V, m, P );
+    q = 0;//已经匹配的字符个数
+    for( i = 0, j = 0, Recordi = 0; j < m; )
+    {
+        if( T[ i ] == P[ j ] )
+        {
+            printf( "%c", P[ j ] );
+            i++;
+            j++;
+        }
+        else
+        {
+            printf( "\n" );
+            i = Recordi + q - V[ q ] + 1;
+            Recordi = i;
+            j = 0;
+            q = 0;
+        }
+    }
+}
+
+#endif // Knuth_Morris_Pratt

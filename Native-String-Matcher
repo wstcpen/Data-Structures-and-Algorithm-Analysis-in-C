@@ -1,0 +1,29 @@
+#ifdef NATIVESTRINGMATCHER
+void
+NativeStringMatcher( const char T[ ], const char P[ ] )
+{
+    int lenT, lenP;
+    int i, j, Recordi;
+
+    lenT = strlen( T );
+    lenP = strlen( P );
+
+    for( i = 0, j = 0, Recordi = 0; j < lenP; )
+    {
+        if( T[ i ] == P[ j ] )
+        {
+            printf( "%c", T[ i ] );
+            j++;
+            i++;
+        }
+        else
+        {
+            printf( "\n" );
+            i = Recordi;
+            i++;
+            Recordi = i;
+            j = 0;
+        }
+    }
+}
+#endif // NATIVESTRINGMATCHER
